@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium,{StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -59,7 +60,11 @@ toggleName = () =>{
       font : 'inherit',
       padding : '8px',
       cursor : 'pointer',
-      border : '1px solid blue'
+      border : '1px solid blue',   
+      ':hover' : {                              //syntax for using radium package as without radium we cannot use pseudo selector in inline styling
+        backgroundColor:'lightgreen',
+        color:'black'
+      }
     }
     let name = null;
     if(this.state.showPerson)
@@ -77,6 +82,10 @@ toggleName = () =>{
         
         </div>);
         design.backgroundColor='red'
+        design[':hover']={
+          backgroundColor:'salmon',
+          color:'black'
+        } 
 
     }
    // let classes = ['red','bold'].join(' ');
@@ -94,18 +103,20 @@ toggleName = () =>{
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button 
-        style = {design}
-        onClick= {this.toggleName}>toggle person</button>  
-       
-       {name}   
-      </div>
+      <StyleRoot><div className="App">
+      <h1>Hi, I'm a React App</h1>
+      <p className={classes.join(' ')}>This is really working!</p>
+      <button  
+      style = {design}
+      onClick= {this.toggleName}>toggle person</button>  
+     
+     {name}   
+    </div>
+    </StyleRoot>
+      
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default Radium(App);
