@@ -1,0 +1,12 @@
+.Person{
+    text-align: center;
+    border: 1px solid  gray;
+    box-shadow: 0px 2px 3px skyblue;
+    width: 60%;
+    padding: 16 px;
+    margin: 16px auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+    
+}
