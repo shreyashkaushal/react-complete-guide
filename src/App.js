@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium,{StyleRoot} from 'radium';
+//import Radium,{StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -60,11 +60,8 @@ toggleName = () =>{
       font : 'inherit',
       padding : '8px',
       cursor : 'pointer',
-      border : '1px solid blue',   
-      ':hover' : {                              //syntax for using radium package as without radium we cannot use pseudo selector in inline styling
-        backgroundColor:'lightgreen',
-        color:'black'
-      }
+      border : '1px solid blue'  
+      
     }
     let name = null;
     if(this.state.showPerson)
@@ -82,10 +79,7 @@ toggleName = () =>{
         
         </div>);
         design.backgroundColor='red'
-        design[':hover']={
-          backgroundColor:'salmon',
-          color:'black'
-        } 
+        
 
     }
    // let classes = ['red','bold'].join(' ');
@@ -103,7 +97,7 @@ toggleName = () =>{
     }
 
     return (
-      <StyleRoot><div className="App">
+      <div className="App">
       <h1>Hi, I'm a React App</h1>
       <p className={classes.join(' ')}>This is really working!</p>
       <button  
@@ -112,11 +106,11 @@ toggleName = () =>{
      
      {name}   
     </div>
-    </StyleRoot>
+    
       
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default Radium(App);
+export default App;
