@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './Person/Person';
+import classes from'./App.css';
+import Person from './Persons/Person/Person';
 //import Radium,{StyleRoot} from 'radium';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -54,54 +55,47 @@ toggleName = () =>{
 
 }
   render() {
-    const design = {
-      backgroundColor : 'green',
-      color : 'white',
-      font : 'inherit',
-      padding : '8px',
-      cursor : 'pointer',
-      border : '1px solid blue'  
-      
-    }
+    
     let name = null;
+    let btnClass ='';
     if(this.state.showPerson)
     {
       name= (<div>
       {this.state.persons.map((person,index)=>{
-        return <Person
+        return <ErrorBoundary key = {person.id}><Person
         click = {()=>this.deletePersonHandler(index)} 
         name={person.name}
         age={person.age}
-        key = {person.id}
+        
         changed={(event)=>this.nameChangeHandler(event,person.id)}
-        />
+        /></ErrorBoundary>
       })}
         
         </div>);
-        design.backgroundColor='red'
-        
+      
+        btnClass=classes.Red;
 
     }
    // let classes = ['red','bold'].join(' ');
-   const classes = [];
+   const assignClasses = [];
    
     if(this.state.persons.length<=2)
     {
-      classes.push('red');
+      assignClasses.push(classes.red);
 
     }
     if(this.state.persons.length<=1)
     {
-      classes.push('bold');
+      assignClasses.push(classes.bold);
 
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
       <h1>Hi, I'm a React App</h1>
-      <p className={classes.join(' ')}>This is really working!</p>
-      <button  
-      style = {design}
+      <p className={assignClasses.join(' ')}>This is really working!</p>
+      <button className={btnClass}  
+      
       onClick= {this.toggleName}>toggle person</button>  
      
      {name}   
