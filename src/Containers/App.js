@@ -7,6 +7,12 @@ import Cockpit from '../Components/Cockpit/Cockpit';
 //import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
+  constructor(props)
+  {
+    super(props);
+    console.log( '[App.js] constructor')
+
+  }
   state = {
     persons: [
       { id:1, name: 'Shreyash', age: 25 },
@@ -17,6 +23,11 @@ class App extends Component {
     otherState: 'some other value'
     , showPerson : false
   };
+ static getDerivedStateFromProps(props,state)
+ {
+  console.log('[App.js] getDerivedStaeFromProps',props) 
+  return state;
+ }
 
   /*switchNameHandler = (newName) => {
     // console.log('Was clicked!');
@@ -50,6 +61,10 @@ class App extends Component {
     
     this.setState({persons:persons });
   }
+  componentDidMount()
+  {
+    console.log('[App.js] componentDidMount');
+  }
 
 toggleName = () =>{
   const doesName = this.state.showPerson;
@@ -57,6 +72,7 @@ toggleName = () =>{
 
 }
   render() {
+    console.log('[App.js] render')
     
     let persons = null;
     
