@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import classes from'./App.css';
-import Person from './Persons/Person/Person';
+import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit';
+
 //import Radium,{StyleRoot} from 'radium';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+//import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -56,49 +58,29 @@ toggleName = () =>{
 }
   render() {
     
-    let name = null;
-    let btnClass ='';
+    let persons = null;
+    
     if(this.state.showPerson)
     {
-      name= (<div>
-      {this.state.persons.map((person,index)=>{
-        return <ErrorBoundary key = {person.id}><Person
-        click = {()=>this.deletePersonHandler(index)} 
-        name={person.name}
-        age={person.age}
-        
-        changed={(event)=>this.nameChangeHandler(event,person.id)}
-        /></ErrorBoundary>
-      })}
-        
-        </div>);
+      persons= <Persons
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed = {this.nameChangeHandler}
+      />
       
-        btnClass=classes.Red;
+      
+        
 
     }
    // let classes = ['red','bold'].join(' ');
-   const assignClasses = [];
    
-    if(this.state.persons.length<=2)
-    {
-      assignClasses.push(classes.red);
-
-    }
-    if(this.state.persons.length<=1)
-    {
-      assignClasses.push(classes.bold);
-
-    }
-
     return (
       <div className={classes.App}>
-      <h1>Hi, I'm a React App</h1>
-      <p className={assignClasses.join(' ')}>This is really working!</p>
-      <button className={btnClass}  
-      
-      onClick= {this.toggleName}>toggle person</button>  
-     
-     {name}   
+        <Cockpit showPerson={this.state.showPerson}
+        persons={this.state.persons}
+        clicked = {this.toggleName}
+         />   
+     {persons}   
     </div>
     
       
