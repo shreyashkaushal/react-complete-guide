@@ -3,7 +3,12 @@ import classes from './cockpit.css';
 const cockpit = (props)=>{
   useEffect(()=>{
     console.log('[cockpit.js] useEffect')
-  })
+    setTimeout(()=>{alert('saved the data')},1000)
+
+    return ()=>{
+      console.log('[cockpit.js] clean up work in useEffect')
+    }
+  },[])
     const assignClasses = [];
     let btnClass ='';
     if(props.showPerson){

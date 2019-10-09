@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from'./App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
-
+import WithClass from '../HOC/WithClass';
 //import Radium,{StyleRoot} from 'radium';
 //import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
@@ -101,13 +101,13 @@ toggleName = () =>{
    // let classes = ['red','bold'].join(' ');
    
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <Cockpit showPerson={this.state.showPerson}
         persons={this.state.persons}
         clicked = {this.toggleName}
          />   
      {persons}   
-    </div>
+    </WithClass>
     
       
     );
